@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Dashboard</title>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <h2>Search For City</h2>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 searchBtn" type="submit">Search</button>
+        </form>
+    </nav>
+</head>
+
+<body>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item city1">Cras justo odio</li>
+                  <li class="list-group-item city2">Dapibus ac facilisis in</li>
+                  <li class="list-group-item city3">Vestibulum at eros</li>
+                  <li class="list-group-item city4">Cras justo odio</li>
+                  <li class="list-group-item city5">Dapibus ac facilisis in</li>
+                  <li class="list-group-item city6">Vestibulum at eros</li>
+                  <li class="list-group-item city7">Cras justo odio</li>
+                  <li class="list-group-item city8">Dapibus ac facilisis in</li>
+                </ul>
+              </div>
+        </div>
+        <div class="column cityInfo" style="background-color:#bbb;">
+          <h2 id ="cityTitle">City Info</h2>
+          <p>Some text..</p>
+          <p>Some text..</p>
+          <p>Some text..</p>
+          <p>Some text..</p>
+          <br>
+          <hr>
+          <h2 id ="cityTitles"> 5-Day Forcast</h2>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

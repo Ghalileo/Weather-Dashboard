@@ -1,0 +1,32 @@
+header {
+    text-align: center;
+    color: white;
+    background-color: grey;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .cityInfo {
+      height: 500px;
+      width: 60%;
+      margin-left: 1px;
+  }
+  h2 {
+      margin-right: 500px;
+  }
