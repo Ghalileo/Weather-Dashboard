@@ -2,21 +2,24 @@
 var apiKey = "f3e794b6f19299364c3a368c93f4e895";
 var cityPlacement = $(".cities");
 
-//API Sever Connection
+//Click event to display the cities
 $(".searchBtn").on("click", function (e) {
     e.preventDefault();
     var city = $(".searchCity").val();
     var state = $(".searchState").val();
 
-    //This point of undo, comment out ajax
-    //URL search for current UV index 
-    // var UVIndex = "http://api.openweathermap.org/data/2.5/forecast?id=524901" + city + "," + state + "&APPID=" + apiKey;
-    // $.ajax({
-    //     url: UVIndex,
-    //     method:"GET"
-    // })
+    
+    //API for current UV index 
+    var UVIndex = "http://api.openweathermap.org/data/2.5/forecast?id=524901" + city + "," + state + "&APPID=" + apiKey;
+    $.ajax({
+        url: UVIndex,
+        method:"GET"
+    })
+    .then(function(response){
+        console.log(response);
+    })
 
-    //URL search for 5 day forcast
+    //API for 5 day forcast
     // var urlSearch = 
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + state + "&appid=" + apiKey,
@@ -39,36 +42,36 @@ $(".searchBtn").on("click", function (e) {
             console.log(Daay)
             console.log(DaayTemp);
             console.log(DaayHumid);
-            // $("#itemA").html("<li>" + JSON.stringify(Daay) + "<li>");
-            // $("#itemA").html("<li>" + JSON.stringify(DaayTemp) + "<li>");
-            // $("#itemA").html("<li>" + JSON.stringify(DaayHumid) + "<li>");
+
 
         // }
+        //Resets all of the data when a new city is entered 
         $("#itemA" + "#itemB" + "#itemC" + "#itemD" + "#itemE" + ".DayofWeek1" + ".DayofWeek2" + ".DayofWeek3" + ".DayofWeek4" + ".DayofWeek5").empty();
+
         //Place all of the current dates on the top of the card
         $(".DayofWeek1").html("<p>" + JSON.stringify(response.list[0].dt_txt) + "<p>");
         $(".DayofWeek2").html("<p>" + JSON.stringify(response.list[8].dt_txt) + "<p>");
         $(".DayofWeek3").html("<p>" + JSON.stringify(response.list[16].dt_txt) + "<p>");
         $(".DayofWeek4").html("<p>" + JSON.stringify(response.list[24].dt_txt) + "<p>");
         $(".DayofWeek5").html("<p>" + JSON.stringify(response.list[36].dt_txt) + "<p>");
+
         //Places the temperature
-        $("#itemA").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
-        $("#itemB").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
-        $("#itemC").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
-        $("#itemD").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
-        $("#itemE").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
-            // $("#itemA").html("<li>" + JSON.stringify(DaayTemp) + "<li>");
-            // $("#itemA").html("<li>" + JSON.stringify(DaayHumid) + "<li>");
+        $("#itemA").html("<li>" + "Temp: " + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemB").html("<li>" + "Temp: " + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemC").html("<li>" + "Temp: " + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemD").html("<li>" + "Temp: " + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemE").html("<li>" + "Temp: " + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+
     });
 
-    //URL search for city,temperature,humidty & windspeed
+    //API for city,temperature,humidty & windspeed
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&appid=" + apiKey,
         method: "GET"
     })
         .then(function (response) {
 
-            // console.log(response);
+            console.log(response);
             // console.log(response.main.humidity);
             //For Loop after button press
 
@@ -83,15 +86,21 @@ $(".searchBtn").on("click", function (e) {
             var stats = $("<p>");
             var currtime = moment().format('MM-DD-YYYY');
             var currday = $('#currentDay');
-
+            var button = $("<button>");
+            
 
             //This Section puts the current city forcast on page.
-            newCard.append(cityname);
+            button.text(cityname);
+            button.addClass("cityInput");
+            newCard.append(button);
             resultsPage.append(newCard);
+        
 
             //Places the current stats of the city chosen on page.
             $("#list").empty();
-            $("#cityTitle").html('<h3>' + cityname + "<br>" + currtime + '</h3>');
+            // $("#cityTitle").html('<h3>' + cityname + "<br>" + currtime + '</h3>');
+            $("#cityTitle").html("<div>" + cityname +  "</div>")
+            $("#time").html("<p>" + currtime + "</p>")
             $("#list").append('<li> Current Temperature: ' + temperature + '</li>');
             $("#list").append('<li> Current Humidity : ' + humid + '</li>');
             $("#list").append('<li> Current WindSpeed : ' + windSpeed + '</li>');
