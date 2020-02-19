@@ -33,3 +33,15 @@ header {
   h3 {
     margin-left: 80px;
   }
+.cityResults {
+  max-width: auto;
+}
+#cityTitles {
+  margin-left: 275px;
+}
+#cityTitle {
+  margin-left: 300px;
+}
+.SearchResults {
+  margin-left: 100px;
+}

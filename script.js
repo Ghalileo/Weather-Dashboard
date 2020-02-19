@@ -10,28 +10,55 @@ $(".searchBtn").on("click", function (e) {
 
     //This point of undo, comment out ajax
     //URL search for current UV index 
-    // var urlSearch = "http://api.openweathermap.org/data/2.5/forecast?id=524901" + city + "," + state + "&APPID=" + apiKey;
+    // var UVIndex = "http://api.openweathermap.org/data/2.5/forecast?id=524901" + city + "," + state + "&APPID=" + apiKey;
     // $.ajax({
-    //     url: urlSearch,
+    //     url: UVIndex,
     //     method:"GET"
     // })
 
     //URL search for 5 day forcast
-    var urlSearch = 
+    // var urlSearch = 
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + state + "&appid=" + apiKey,
 
         method: "GET"
     })
     .then(function (response) {
-        console.log(response);
-        var weeklyCast = response.list;
         
+        console.log(response);
+        console.log(response.list[0].dt_txt);
+        console.log(response.list[0].main.temp);
+        console.log(response.list[0].main.humidity);
+        
+        // $(".DayofWeek1").html("<div>" + response.list[0] + "<div>");
+        // for (i = 0; i < response.list.length; i+=8){
+            //Variables defined with the future stats of the city.
+            var Daay = response.list[0].dt_txt
+            var DaayTemp = response.list[0].main.temp
+            var DaayHumid = response.list[0].main.humidity
+            console.log(Daay)
+            console.log(DaayTemp);
+            console.log(DaayHumid);
+            // $("#itemA").html("<li>" + JSON.stringify(Daay) + "<li>");
+            // $("#itemA").html("<li>" + JSON.stringify(DaayTemp) + "<li>");
+            // $("#itemA").html("<li>" + JSON.stringify(DaayHumid) + "<li>");
 
-        // $('#fiveDays').html('<li>' + JSON.stringify(weeklyCast) + '</li>');
-        // console.log(weeklyCast);
-
-
+        // }
+        $("#itemA" + "#itemB" + "#itemC" + "#itemD" + "#itemE" + ".DayofWeek1" + ".DayofWeek2" + ".DayofWeek3" + ".DayofWeek4" + ".DayofWeek5").empty();
+        //Place all of the current dates on the top of the card
+        $(".DayofWeek1").html("<p>" + JSON.stringify(response.list[0].dt_txt) + "<p>");
+        $(".DayofWeek2").html("<p>" + JSON.stringify(response.list[8].dt_txt) + "<p>");
+        $(".DayofWeek3").html("<p>" + JSON.stringify(response.list[16].dt_txt) + "<p>");
+        $(".DayofWeek4").html("<p>" + JSON.stringify(response.list[24].dt_txt) + "<p>");
+        $(".DayofWeek5").html("<p>" + JSON.stringify(response.list[36].dt_txt) + "<p>");
+        //Places the temperature
+        $("#itemA").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemB").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemC").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemD").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+        $("#itemE").html("<li>" + "Temperature" + JSON.stringify(DaayTemp) + "</li>" + "<li>" + "Humidity: " + JSON.stringify(DaayHumid) +"</li>");
+            // $("#itemA").html("<li>" + JSON.stringify(DaayTemp) + "<li>");
+            // $("#itemA").html("<li>" + JSON.stringify(DaayHumid) + "<li>");
     });
 
     //URL search for city,temperature,humidty & windspeed
@@ -41,8 +68,8 @@ $(".searchBtn").on("click", function (e) {
     })
         .then(function (response) {
 
-            console.log(response);
-            console.log(response.main.humidity);
+            // console.log(response);
+            // console.log(response.main.humidity);
             //For Loop after button press
 
             // console.log(response);
@@ -54,7 +81,7 @@ $(".searchBtn").on("click", function (e) {
             var statsResults = $(".cityForcast")
             var newCard = $("<ul>");
             var stats = $("<p>");
-            var currtime = moment().format('MM DD YYYY');
+            var currtime = moment().format('MM-DD-YYYY');
             var currday = $('#currentDay');
 
 
