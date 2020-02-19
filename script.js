@@ -17,17 +17,26 @@ $(".searchBtn").on("click", function (e) {
     // })
 
     //URL search for 5 day forcast
-    // var urlSearch = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + state + "&appid=" + apiKey;
-    // $.ajax({
-    //     url: urlSearch,
-    //     method: "GET"
-    // })
-    
+    var urlSearch = 
+    $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + state + "&appid=" + apiKey,
+
+        method: "GET"
+    })
+    .then(function (response) {
+        console.log(response);
+        var weeklyCast = response.list;
+        
+
+        // $('#fiveDays').html('<li>' + JSON.stringify(weeklyCast) + '</li>');
+        // console.log(weeklyCast);
+
+
+    });
 
     //URL search for city,temperature,humidty & windspeed
-    var urlSearch = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&appid=" + apiKey;
     $.ajax({
-        url: urlSearch,
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&appid=" + apiKey,
         method: "GET"
     })
         .then(function (response) {
@@ -53,32 +62,15 @@ $(".searchBtn").on("click", function (e) {
             newCard.append(cityname);
             resultsPage.append(newCard);
 
-            //Displays the current stats of the city on the page
-            // stats.append(temperature);
-            // stats.append(humid);
-            // stats.append(windSpeed);
+            //Places the current stats of the city chosen on page.
             $("#list").empty();
-            $("#cityTitle").html('<li>' + cityname + "<br>" + currtime + '</li>');
+            $("#cityTitle").html('<h3>' + cityname + "<br>" + currtime + '</h3>');
             $("#list").append('<li> Current Temperature: ' + temperature + '</li>');
             $("#list").append('<li> Current Humidity : ' + humid + '</li>');
             $("#list").append('<li> Current WindSpeed : ' + windSpeed + '</li>');
             $("#list").append('<li> Current UV Index: ' + humid + '</li>');
 
             // statsResults.append(stats);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         })
 
