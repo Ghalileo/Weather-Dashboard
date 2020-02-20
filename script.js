@@ -103,7 +103,7 @@ $(".searchBtn").on("click", function (e) {
 
             
             //API for current UV index 
-            var UVIndex = "http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + lat + "&lon=" + lon;
+            var UVIndex = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + lat + "&lon=" + lon;
             $.ajax({
                 url: UVIndex,
                 method: "GET"
@@ -111,8 +111,22 @@ $(".searchBtn").on("click", function (e) {
             .then(function (response) {
                 console.log(response);
                 var UV = response.value;
+                var uv = $(UV)
+
+                if (parseInt(uv) >= 8){
+                    uvli.addClass("UVHigh");
+                }
+                else if(parseInt(uv) >=3 &&  parseInt(uv) <=7 ){
+                    uvli.addClass("UVModerate");
+                }
+                else if(parseInt(uv) <3){
+                    uvli.addClass("UVLow");
+                }
                 console.log(UV);
-                $("#list").append('<li> Current UV Index: ' + UV + '</li>');
+                // $("#list").append('<li> Current UV Index: ' + UV + '</li>');
+                var uvli = $("<li>")
+                uvli.text("Current UV Index: " + UV)
+                $("#list").append(uvli)
             })
         })
 
