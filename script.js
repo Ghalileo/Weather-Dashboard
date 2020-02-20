@@ -86,7 +86,7 @@ $(".searchBtn").on("click", function (e) {
 
 
             //This Section puts the current city forcast on page.
-            button.text(cityname);
+            button.append(cityname);
             button.addClass("cityInput");
             newCard.append(button);
             resultsPage.append(newCard);
